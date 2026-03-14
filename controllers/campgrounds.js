@@ -11,7 +11,7 @@ module.exports.rendnew=(req,res)=>{
     res.render('campgrounds/new');
 };
 module.exports.createNew=async(req,res)=>{ 
-     console.time("RenderTime");no 
+     console.time("RenderTime");
     // if(!req.body.campground) throw new expressError('Invalid Campground Data',400);
       const geoData = await maptilerClient.geocoding.forward(req.body.campground.location, { limit: 1 });
     // console.log(geoData);
