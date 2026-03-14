@@ -15,7 +15,7 @@ const joi =require('joi');
 
 const mongoose=require('mongoose');
 // const dburl=process.env.DB_URL;
-const dburl='mongodb://127.0.0.1:27017/yelpCamp-test';
+const dburl=process.env.DB_URL || 'mongodb://127.0.0.1:27017/yelpCamp-test';
 
 
 mongoose.connect(dburl).then(()=>{
@@ -29,11 +29,13 @@ const session=require('express-session')
 const { MongoStore } = require('connect-mongo');
 const helmet=require('helmet')
 const mongoSanitize=require('express-mongo-sanitize')
+const secret=process.env.SECRET ||'thisisabettersecret';
+
 const store = MongoStore.create({
     mongoUrl: dburl,
     touchAfter: 24 * 60 * 60,
     crypto: {
-        secret: 'thisshouldbeabettersecret!'
+        secret:secret;
     }
 });
 store.on("error",function(e){
@@ -44,7 +46,7 @@ const sessionconfig={
     name:'blah',
     httpOnly:true,
     // secure:true
-    secret:'thisisabettersecret',
+    secret:secret,
 
     resave:false,
     saveUninitialized:false,
