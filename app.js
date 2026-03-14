@@ -6,7 +6,7 @@ const app=express();
  
 const maptilerClient = require("@maptiler/client");
 maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
-const port=3000 || process.env.PORT;
+const port=process.env.PORT || 3000;
 const path=require('path');
 const passport=require('passport');
 const localStrategy=require('passport-local');
@@ -138,7 +138,7 @@ app.use('/',userRouter);
 app.get('/',(req,res)=>{
     res.render('home');
 });
-app.use(mongoSanitize);
+app.use(mongoSanitize());
 
 
 app.all(/(.*)/,(req,res,next)=>{
