@@ -1,0 +1,10 @@
+<% layout('layouts/layout') -%>
+
+<div class="alert alert-danger" role="alert">
+  <h4 class="alert-heading"><%= err.statusCode %></h4>
+  <h1><%= err.message %></h1>
+  <h2><%= err.name %></h2>
+  <% if(process.env.NODE_ENV!=="production"){ %>
+    <%= err.stack %>
+    <% } %>
+</div>
