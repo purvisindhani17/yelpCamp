@@ -6,7 +6,7 @@ const app=express();
  
 const maptilerClient = require("@maptiler/client");
 maptilerClient.config.apiKey = process.env.MAPTILER_API_KEY;
-const port=3000;
+const port=3000 || process.env.PORT;
 const path=require('path');
 const passport=require('passport');
 const localStrategy=require('passport-local');
